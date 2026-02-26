@@ -31,31 +31,27 @@
             -webkit-font-smoothing: antialiased;
         }
 
-        /* Hero Section */
         .hero {
             position: relative;
             min-height: 100vh;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            overflow: hidden;
+            min-height: 100dvh;
         }
 
         .hero-bg {
-            position: absolute;
+            position: fixed;
             inset: 0;
             background: url('https://www.ronclinic.com/images/services/acupuncture-640w.webp') center/cover no-repeat;
             z-index: 0;
         }
 
         .hero-overlay {
-            position: absolute;
+            position: fixed;
             inset: 0;
             background: linear-gradient(
                 180deg,
-                rgba(26, 26, 24, 0.75) 0%,
-                rgba(26, 26, 24, 0.85) 50%,
-                rgba(26, 26, 24, 0.92) 100%
+                rgba(26, 26, 24, 0.72) 0%,
+                rgba(26, 26, 24, 0.84) 50%,
+                rgba(26, 26, 24, 0.93) 100%
             );
             z-index: 1;
         }
@@ -65,14 +61,14 @@
             z-index: 2;
             max-width: 640px;
             width: 100%;
-            padding: 60px 24px;
+            margin: 0 auto;
+            padding: 25vh 24px 32px;
             text-align: center;
         }
 
-        /* Fade-up animation */
         .fade-up {
             opacity: 0;
-            transform: translateY(30px);
+            transform: translateY(28px);
             transition: opacity 0.8s ease, transform 0.8s ease;
         }
 
@@ -85,17 +81,14 @@
         .fade-up:nth-child(3) { transition-delay: 0.3s; }
         .fade-up:nth-child(4) { transition-delay: 0.45s; }
         .fade-up:nth-child(5) { transition-delay: 0.6s; }
-        .fade-up:nth-child(6) { transition-delay: 0.75s; }
 
-        /* Logo / Name */
-        .clinic-name {
+        .greeting {
             font-family: 'Frank Ruhl Libre', serif;
-            font-size: 2.6rem;
+            font-size: 2.4rem;
             font-weight: 700;
             color: var(--cream);
-            letter-spacing: 0.02em;
-            margin-bottom: 4px;
             line-height: 1.2;
+            margin-bottom: 10px;
         }
 
         .clinic-subtitle {
@@ -103,15 +96,15 @@
             font-size: 1rem;
             font-weight: 300;
             color: var(--gold);
-            letter-spacing: 0.08em;
-            margin-bottom: 32px;
+            letter-spacing: 0.05em;
+            margin-bottom: 24px;
         }
 
         .divider {
             width: 60px;
             height: 1px;
             background: var(--gold);
-            margin: 0 auto 32px;
+            margin: 0 auto 24px;
             opacity: 0.6;
         }
 
@@ -121,13 +114,12 @@
             font-weight: 300;
             color: rgba(245, 240, 232, 0.85);
             line-height: 1.8;
-            margin-bottom: 40px;
+            margin-bottom: 32px;
             max-width: 480px;
             margin-left: auto;
             margin-right: auto;
         }
 
-        /* Buttons */
         .actions {
             display: flex;
             flex-direction: column;
@@ -145,18 +137,18 @@
             padding: 16px 28px;
             border-radius: 8px;
             font-family: 'Heebo', sans-serif;
-            font-size: 1rem;
+            font-size: 1.05rem;
             font-weight: 500;
             text-decoration: none;
             cursor: pointer;
             border: none;
             transition: all 0.3s ease;
-            letter-spacing: 0.01em;
         }
 
         .btn-primary {
             background: var(--gold);
             color: var(--dark);
+            font-weight: 700;
         }
 
         .btn-primary:hover {
@@ -167,32 +159,17 @@
 
         .btn-secondary {
             background: transparent;
-            color: var(--cream);
-            border: 1.5px solid rgba(184, 146, 90, 0.5);
+            color: rgba(245, 240, 232, 0.7);
+            border: 1.5px solid rgba(184, 146, 90, 0.4);
+            font-weight: 300;
+            font-size: 0.95rem;
         }
 
         .btn-secondary:hover {
             border-color: var(--gold);
-            background: rgba(184, 146, 90, 0.1);
-            transform: translateY(-2px);
-        }
-
-        .btn-tertiary {
-            background: transparent;
-            color: rgba(245, 240, 232, 0.6);
-            border: 1px solid rgba(245, 240, 232, 0.15);
-            font-weight: 300;
-            font-size: 0.9rem;
-        }
-
-        .btn-tertiary:hover {
             color: var(--cream);
-            border-color: rgba(245, 240, 232, 0.3);
-        }
-
-        .btn-icon {
-            font-size: 1.15rem;
-            line-height: 1;
+            background: rgba(184, 146, 90, 0.08);
+            transform: translateY(-2px);
         }
 
         /* Modal */
@@ -344,7 +321,6 @@
             cursor: not-allowed;
         }
 
-        /* Thank You State */
         .thank-you {
             display: none;
             text-align: center;
@@ -374,15 +350,11 @@
             margin-bottom: 0;
         }
 
-        /* Footer */
         .footer {
             position: relative;
             z-index: 2;
             text-align: center;
-            padding: 20px 24px 28px;
-            position: absolute;
-            bottom: 0;
-            width: 100%;
+            padding: 16px 24px;
         }
 
         .footer-text {
@@ -391,22 +363,37 @@
             font-weight: 300;
         }
 
-        /* Mobile adjustments */
         @media (max-width: 480px) {
-            .clinic-name {
-                font-size: 2rem;
+            .greeting {
+                font-size: 1.85rem;
             }
 
             .hero-content {
-                padding: 48px 20px;
+                padding: 18vh 20px 24px;
+            }
+
+            .clinic-subtitle {
+                font-size: 0.88rem;
+                margin-bottom: 18px;
+            }
+
+            .divider {
+                margin-bottom: 18px;
             }
 
             .hero-text {
-                font-size: 0.95rem;
+                font-size: 0.9rem;
+                line-height: 1.7;
+                margin-bottom: 24px;
+            }
+
+            .actions {
+                gap: 12px;
             }
 
             .btn {
                 padding: 14px 24px;
+                max-width: 100%;
                 font-size: 0.95rem;
             }
 
@@ -414,9 +401,12 @@
                 padding: 32px 24px;
                 border-radius: 12px;
             }
+
+            .footer {
+                display: none;
+            }
         }
 
-        /* Scrollbar */
         .modal::-webkit-scrollbar {
             width: 4px;
         }
@@ -434,26 +424,19 @@
         <div class="hero-overlay"></div>
 
         <div class="hero-content">
-            <h1 class="clinic-name fade-up">רון בן בכר</h1>
-            <p class="clinic-subtitle fade-up">רפואה סינית · נתניה</p>
+            <h1 class="greeting fade-up">שמחים שפנית 🙏</h1>
+            <p class="clinic-subtitle fade-up">רון בן בכר | רפואה סינית ודיקור • נתניה</p>
             <div class="divider fade-up"></div>
             <p class="hero-text fade-up">
-                טיפול מותאם אישית ברפואה סינית מסורתית —
-                דיקור, צמחי מרפא ושיטות ריפוי טבעיות
-                לגוף ולנפש.
+                מעל 8 שנות ניסיון בטיפול בכאבים אורתופדיים, מיגרנות, חרדה והפרעות שינה. הטיפול מותאם אישית לכל מטופל.
             </p>
 
             <div class="actions fade-up">
-                <a href="https://calendly.com/ronclinic/ייעוץ" target="_blank" rel="noopener" class="btn btn-primary">
-                    <span class="btn-icon">📞</span>
-                    שיחת ייעוץ חינם
-                </a>
-                <button type="button" class="btn btn-secondary" id="openFormBtn">
-                    <span class="btn-icon">📍</span>
-                    קביעת טיפול בקליניקה
+                <button type="button" class="btn btn-primary" id="openFormBtn">
+                    אני רוצה להגיע לטיפול
                 </button>
-                <a href="https://www.ronclinic.com" target="_blank" rel="noopener" class="btn btn-tertiary">
-                    מידע נוסף באתר הקליניקה ←
+                <a href="https://www.ronclinic.com" target="_blank" rel="noopener" class="btn btn-secondary">
+                    עוד מידע על הטיפולים
                 </a>
             </div>
         </div>
@@ -468,18 +451,15 @@
         <div class="modal">
             <button class="modal-close" id="modalClose" aria-label="סגירה">✕</button>
 
-            <!-- Form -->
             <form
                 id="bookingForm"
-                action="https://formsubmit.co/YOUR_EMAIL@gmail.com"
+                action="https://formsubmit.co/ronbenbachar@gmail.com"
                 method="POST"
             >
-                <!-- FormSubmit config -->
                 <input type="hidden" name="_subject" value="פנייה חדשה מדף הנחיתה">
                 <input type="hidden" name="_captcha" value="false">
                 <input type="hidden" name="_template" value="table">
                 <input type="hidden" name="_next" value="#">
-                <!-- Honeypot -->
                 <input type="text" name="_honey" style="display:none">
 
                 <h2>קביעת טיפול</h2>
@@ -496,39 +476,36 @@
                 </div>
 
                 <div class="form-group">
-                    <label for="concern">מה מטריד אותך?</label>
-                    <textarea id="concern" name="מה מטריד אותך" rows="3" placeholder="ספרו בקצרה על מה שמפריע לכם"></textarea>
+                    <label for="concern">במה תרצה לטפל?</label>
+                    <textarea id="concern" name="במה תרצה לטפל" required rows="3" placeholder="ספרו בקצרה על מה שמפריע לכם"></textarea>
                 </div>
 
                 <div class="form-group">
                     <label for="source">איך שמעת עלינו?</label>
                     <select id="source" name="איך שמעת עלינו">
                         <option value="" disabled selected>בחרו אפשרות</option>
-                        <option value="המלצה אישית">המלצה אישית</option>
                         <option value="גוגל">גוגל</option>
-                        <option value="פייסבוק / אינסטגרם">פייסבוק / אינסטגרם</option>
-                        <option value="וואטסאפ">וואטסאפ</option>
+                        <option value="חבר/המלצה">חבר/המלצה</option>
+                        <option value="פייסבוק">פייסבוק</option>
+                        <option value="אינסטגרם">אינסטגרם</option>
                         <option value="אחר">אחר</option>
                     </select>
                 </div>
 
-                <button type="submit" class="btn-submit" id="submitBtn">שלחו פנייה</button>
+                <button type="submit" class="btn-submit" id="submitBtn">שליחה</button>
             </form>
 
-            <!-- Thank You -->
             <div class="thank-you" id="thankYou">
                 <div class="thank-you-icon">✦</div>
-                <h2>תודה רבה!</h2>
-                <p>הפנייה שלכם התקבלה.<br>רון יחזור אליכם תוך 24 שעות לתיאום הטיפול.</p>
+                <h2>תודה!</h2>
+                <p>רון יחזור אליך תוך 24 שעות לתיאום הטיפול.</p>
             </div>
         </div>
     </div>
 
     <script>
-        // Fade-up on load
         document.addEventListener('DOMContentLoaded', function () {
             var els = document.querySelectorAll('.fade-up');
-            // Small delay to ensure paint
             setTimeout(function () {
                 els.forEach(function (el) {
                     el.classList.add('visible');
@@ -536,7 +513,6 @@
             }, 100);
         });
 
-        // Modal
         var overlay = document.getElementById('modalOverlay');
         var openBtn = document.getElementById('openFormBtn');
         var closeBtn = document.getElementById('modalClose');
@@ -545,7 +521,6 @@
 
         function openModal() {
             overlay.style.display = 'flex';
-            // Trigger reflow for transition
             overlay.offsetHeight;
             overlay.classList.add('active');
             document.body.style.overflow = 'hidden';
@@ -572,7 +547,6 @@
             }
         });
 
-        // Form submission via fetch to avoid redirect
         form.addEventListener('submit', function (e) {
             e.preventDefault();
 
@@ -592,7 +566,6 @@
                 thankYou.classList.add('active');
             })
             .catch(function () {
-                // Show thank you anyway — FormSubmit sometimes blocks CORS
                 form.style.display = 'none';
                 thankYou.classList.add('active');
             });
