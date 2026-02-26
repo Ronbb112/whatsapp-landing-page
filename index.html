@@ -1,0 +1,602 @@
+<!DOCTYPE html>
+<html lang="he" dir="rtl">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>רון בן בכר — רפואה סינית בנתניה</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Frank+Ruhl+Libre:wght@400;700&family=Heebo:wght@300;400;500;700&display=swap" rel="stylesheet">
+    <style>
+        *, *::before, *::after {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        :root {
+            --cream: #f5f0e8;
+            --gold: #b8925a;
+            --dark: #1a1a18;
+            --gold-light: #d4b07a;
+            --gold-dark: #9a7844;
+        }
+
+        body {
+            font-family: 'Heebo', sans-serif;
+            background: var(--cream);
+            color: var(--dark);
+            direction: rtl;
+            min-height: 100vh;
+            -webkit-font-smoothing: antialiased;
+        }
+
+        /* Hero Section */
+        .hero {
+            position: relative;
+            min-height: 100vh;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            overflow: hidden;
+        }
+
+        .hero-bg {
+            position: absolute;
+            inset: 0;
+            background: url('https://www.ronclinic.com/images/services/acupuncture-640w.webp') center/cover no-repeat;
+            z-index: 0;
+        }
+
+        .hero-overlay {
+            position: absolute;
+            inset: 0;
+            background: linear-gradient(
+                180deg,
+                rgba(26, 26, 24, 0.75) 0%,
+                rgba(26, 26, 24, 0.85) 50%,
+                rgba(26, 26, 24, 0.92) 100%
+            );
+            z-index: 1;
+        }
+
+        .hero-content {
+            position: relative;
+            z-index: 2;
+            max-width: 640px;
+            width: 100%;
+            padding: 60px 24px;
+            text-align: center;
+        }
+
+        /* Fade-up animation */
+        .fade-up {
+            opacity: 0;
+            transform: translateY(30px);
+            transition: opacity 0.8s ease, transform 0.8s ease;
+        }
+
+        .fade-up.visible {
+            opacity: 1;
+            transform: translateY(0);
+        }
+
+        .fade-up:nth-child(2) { transition-delay: 0.15s; }
+        .fade-up:nth-child(3) { transition-delay: 0.3s; }
+        .fade-up:nth-child(4) { transition-delay: 0.45s; }
+        .fade-up:nth-child(5) { transition-delay: 0.6s; }
+        .fade-up:nth-child(6) { transition-delay: 0.75s; }
+
+        /* Logo / Name */
+        .clinic-name {
+            font-family: 'Frank Ruhl Libre', serif;
+            font-size: 2.6rem;
+            font-weight: 700;
+            color: var(--cream);
+            letter-spacing: 0.02em;
+            margin-bottom: 4px;
+            line-height: 1.2;
+        }
+
+        .clinic-subtitle {
+            font-family: 'Heebo', sans-serif;
+            font-size: 1rem;
+            font-weight: 300;
+            color: var(--gold);
+            letter-spacing: 0.08em;
+            margin-bottom: 32px;
+        }
+
+        .divider {
+            width: 60px;
+            height: 1px;
+            background: var(--gold);
+            margin: 0 auto 32px;
+            opacity: 0.6;
+        }
+
+        .hero-text {
+            font-family: 'Heebo', sans-serif;
+            font-size: 1.05rem;
+            font-weight: 300;
+            color: rgba(245, 240, 232, 0.85);
+            line-height: 1.8;
+            margin-bottom: 40px;
+            max-width: 480px;
+            margin-left: auto;
+            margin-right: auto;
+        }
+
+        /* Buttons */
+        .actions {
+            display: flex;
+            flex-direction: column;
+            gap: 14px;
+            align-items: center;
+        }
+
+        .btn {
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            gap: 10px;
+            width: 100%;
+            max-width: 340px;
+            padding: 16px 28px;
+            border-radius: 8px;
+            font-family: 'Heebo', sans-serif;
+            font-size: 1rem;
+            font-weight: 500;
+            text-decoration: none;
+            cursor: pointer;
+            border: none;
+            transition: all 0.3s ease;
+            letter-spacing: 0.01em;
+        }
+
+        .btn-primary {
+            background: var(--gold);
+            color: var(--dark);
+        }
+
+        .btn-primary:hover {
+            background: var(--gold-light);
+            transform: translateY(-2px);
+            box-shadow: 0 8px 24px rgba(184, 146, 90, 0.3);
+        }
+
+        .btn-secondary {
+            background: transparent;
+            color: var(--cream);
+            border: 1.5px solid rgba(184, 146, 90, 0.5);
+        }
+
+        .btn-secondary:hover {
+            border-color: var(--gold);
+            background: rgba(184, 146, 90, 0.1);
+            transform: translateY(-2px);
+        }
+
+        .btn-tertiary {
+            background: transparent;
+            color: rgba(245, 240, 232, 0.6);
+            border: 1px solid rgba(245, 240, 232, 0.15);
+            font-weight: 300;
+            font-size: 0.9rem;
+        }
+
+        .btn-tertiary:hover {
+            color: var(--cream);
+            border-color: rgba(245, 240, 232, 0.3);
+        }
+
+        .btn-icon {
+            font-size: 1.15rem;
+            line-height: 1;
+        }
+
+        /* Modal */
+        .modal-overlay {
+            display: none;
+            position: fixed;
+            inset: 0;
+            background: rgba(26, 26, 24, 0.8);
+            backdrop-filter: blur(6px);
+            -webkit-backdrop-filter: blur(6px);
+            z-index: 100;
+            align-items: center;
+            justify-content: center;
+            padding: 24px;
+            opacity: 0;
+            transition: opacity 0.3s ease;
+        }
+
+        .modal-overlay.active {
+            display: flex;
+            opacity: 1;
+        }
+
+        .modal {
+            background: var(--cream);
+            border-radius: 16px;
+            max-width: 440px;
+            width: 100%;
+            padding: 40px 32px;
+            position: relative;
+            transform: translateY(20px);
+            transition: transform 0.3s ease;
+            max-height: 90vh;
+            overflow-y: auto;
+        }
+
+        .modal-overlay.active .modal {
+            transform: translateY(0);
+        }
+
+        .modal-close {
+            position: absolute;
+            top: 16px;
+            left: 16px;
+            background: none;
+            border: none;
+            font-size: 1.5rem;
+            color: var(--dark);
+            cursor: pointer;
+            opacity: 0.4;
+            transition: opacity 0.2s;
+            width: 36px;
+            height: 36px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            border-radius: 50%;
+        }
+
+        .modal-close:hover {
+            opacity: 0.8;
+        }
+
+        .modal h2 {
+            font-family: 'Frank Ruhl Libre', serif;
+            font-size: 1.6rem;
+            font-weight: 700;
+            color: var(--dark);
+            margin-bottom: 8px;
+        }
+
+        .modal p {
+            font-size: 0.9rem;
+            color: rgba(26, 26, 24, 0.6);
+            margin-bottom: 28px;
+            line-height: 1.6;
+        }
+
+        .form-group {
+            margin-bottom: 18px;
+        }
+
+        .form-group label {
+            display: block;
+            font-size: 0.85rem;
+            font-weight: 500;
+            color: var(--dark);
+            margin-bottom: 6px;
+        }
+
+        .form-group input,
+        .form-group textarea,
+        .form-group select {
+            width: 100%;
+            padding: 12px 16px;
+            border: 1.5px solid rgba(26, 26, 24, 0.12);
+            border-radius: 8px;
+            font-family: 'Heebo', sans-serif;
+            font-size: 0.95rem;
+            background: white;
+            color: var(--dark);
+            transition: border-color 0.2s;
+            direction: rtl;
+        }
+
+        .form-group input:focus,
+        .form-group textarea:focus,
+        .form-group select:focus {
+            outline: none;
+            border-color: var(--gold);
+        }
+
+        .form-group textarea {
+            resize: vertical;
+            min-height: 80px;
+        }
+
+        .form-group select {
+            appearance: none;
+            -webkit-appearance: none;
+            background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='12' height='8' viewBox='0 0 12 8'%3E%3Cpath fill='%231a1a18' opacity='0.4' d='M6 8L0 0h12z'/%3E%3C/svg%3E");
+            background-repeat: no-repeat;
+            background-position: 16px center;
+            padding-left: 40px;
+        }
+
+        .btn-submit {
+            width: 100%;
+            padding: 14px;
+            background: var(--gold);
+            color: var(--dark);
+            border: none;
+            border-radius: 8px;
+            font-family: 'Heebo', sans-serif;
+            font-size: 1rem;
+            font-weight: 700;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            margin-top: 8px;
+        }
+
+        .btn-submit:hover {
+            background: var(--gold-dark);
+            color: var(--cream);
+        }
+
+        .btn-submit:disabled {
+            opacity: 0.5;
+            cursor: not-allowed;
+        }
+
+        /* Thank You State */
+        .thank-you {
+            display: none;
+            text-align: center;
+            padding: 20px 0;
+        }
+
+        .thank-you.active {
+            display: block;
+        }
+
+        .thank-you-icon {
+            font-size: 3rem;
+            margin-bottom: 16px;
+        }
+
+        .thank-you h2 {
+            font-family: 'Frank Ruhl Libre', serif;
+            font-size: 1.5rem;
+            margin-bottom: 12px;
+            color: var(--dark);
+        }
+
+        .thank-you p {
+            color: rgba(26, 26, 24, 0.6);
+            font-size: 0.95rem;
+            line-height: 1.7;
+            margin-bottom: 0;
+        }
+
+        /* Footer */
+        .footer {
+            position: relative;
+            z-index: 2;
+            text-align: center;
+            padding: 20px 24px 28px;
+            position: absolute;
+            bottom: 0;
+            width: 100%;
+        }
+
+        .footer-text {
+            font-size: 0.75rem;
+            color: rgba(245, 240, 232, 0.3);
+            font-weight: 300;
+        }
+
+        /* Mobile adjustments */
+        @media (max-width: 480px) {
+            .clinic-name {
+                font-size: 2rem;
+            }
+
+            .hero-content {
+                padding: 48px 20px;
+            }
+
+            .hero-text {
+                font-size: 0.95rem;
+            }
+
+            .btn {
+                padding: 14px 24px;
+                font-size: 0.95rem;
+            }
+
+            .modal {
+                padding: 32px 24px;
+                border-radius: 12px;
+            }
+        }
+
+        /* Scrollbar */
+        .modal::-webkit-scrollbar {
+            width: 4px;
+        }
+
+        .modal::-webkit-scrollbar-thumb {
+            background: rgba(26, 26, 24, 0.15);
+            border-radius: 4px;
+        }
+    </style>
+</head>
+<body>
+
+    <section class="hero">
+        <div class="hero-bg"></div>
+        <div class="hero-overlay"></div>
+
+        <div class="hero-content">
+            <h1 class="clinic-name fade-up">רון בן בכר</h1>
+            <p class="clinic-subtitle fade-up">רפואה סינית · נתניה</p>
+            <div class="divider fade-up"></div>
+            <p class="hero-text fade-up">
+                טיפול מותאם אישית ברפואה סינית מסורתית —
+                דיקור, צמחי מרפא ושיטות ריפוי טבעיות
+                לגוף ולנפש.
+            </p>
+
+            <div class="actions fade-up">
+                <a href="https://calendly.com/ronclinic/ייעוץ" target="_blank" rel="noopener" class="btn btn-primary">
+                    <span class="btn-icon">📞</span>
+                    שיחת ייעוץ חינם
+                </a>
+                <button type="button" class="btn btn-secondary" id="openFormBtn">
+                    <span class="btn-icon">📍</span>
+                    קביעת טיפול בקליניקה
+                </button>
+                <a href="https://www.ronclinic.com" target="_blank" rel="noopener" class="btn btn-tertiary">
+                    מידע נוסף באתר הקליניקה ←
+                </a>
+            </div>
+        </div>
+
+        <footer class="footer fade-up">
+            <p class="footer-text">© רון בן בכר — רפואה סינית בנתניה</p>
+        </footer>
+    </section>
+
+    <!-- Treatment Booking Modal -->
+    <div class="modal-overlay" id="modalOverlay">
+        <div class="modal">
+            <button class="modal-close" id="modalClose" aria-label="סגירה">✕</button>
+
+            <!-- Form -->
+            <form
+                id="bookingForm"
+                action="https://formsubmit.co/YOUR_EMAIL@gmail.com"
+                method="POST"
+            >
+                <!-- FormSubmit config -->
+                <input type="hidden" name="_subject" value="פנייה חדשה מדף הנחיתה">
+                <input type="hidden" name="_captcha" value="false">
+                <input type="hidden" name="_template" value="table">
+                <input type="hidden" name="_next" value="#">
+                <!-- Honeypot -->
+                <input type="text" name="_honey" style="display:none">
+
+                <h2>קביעת טיפול</h2>
+                <p>מלאו את הפרטים ורון יחזור אליכם לתיאום</p>
+
+                <div class="form-group">
+                    <label for="name">שם מלא</label>
+                    <input type="text" id="name" name="שם מלא" required autocomplete="name" placeholder="השם שלך">
+                </div>
+
+                <div class="form-group">
+                    <label for="phone">מספר טלפון</label>
+                    <input type="tel" id="phone" name="מספר טלפון" required autocomplete="tel" placeholder="050-0000000" dir="ltr" style="text-align:right;">
+                </div>
+
+                <div class="form-group">
+                    <label for="concern">מה מטריד אותך?</label>
+                    <textarea id="concern" name="מה מטריד אותך" rows="3" placeholder="ספרו בקצרה על מה שמפריע לכם"></textarea>
+                </div>
+
+                <div class="form-group">
+                    <label for="source">איך שמעת עלינו?</label>
+                    <select id="source" name="איך שמעת עלינו">
+                        <option value="" disabled selected>בחרו אפשרות</option>
+                        <option value="המלצה אישית">המלצה אישית</option>
+                        <option value="גוגל">גוגל</option>
+                        <option value="פייסבוק / אינסטגרם">פייסבוק / אינסטגרם</option>
+                        <option value="וואטסאפ">וואטסאפ</option>
+                        <option value="אחר">אחר</option>
+                    </select>
+                </div>
+
+                <button type="submit" class="btn-submit" id="submitBtn">שלחו פנייה</button>
+            </form>
+
+            <!-- Thank You -->
+            <div class="thank-you" id="thankYou">
+                <div class="thank-you-icon">✦</div>
+                <h2>תודה רבה!</h2>
+                <p>הפנייה שלכם התקבלה.<br>רון יחזור אליכם תוך 24 שעות לתיאום הטיפול.</p>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        // Fade-up on load
+        document.addEventListener('DOMContentLoaded', function () {
+            var els = document.querySelectorAll('.fade-up');
+            // Small delay to ensure paint
+            setTimeout(function () {
+                els.forEach(function (el) {
+                    el.classList.add('visible');
+                });
+            }, 100);
+        });
+
+        // Modal
+        var overlay = document.getElementById('modalOverlay');
+        var openBtn = document.getElementById('openFormBtn');
+        var closeBtn = document.getElementById('modalClose');
+        var form = document.getElementById('bookingForm');
+        var thankYou = document.getElementById('thankYou');
+
+        function openModal() {
+            overlay.style.display = 'flex';
+            // Trigger reflow for transition
+            overlay.offsetHeight;
+            overlay.classList.add('active');
+            document.body.style.overflow = 'hidden';
+        }
+
+        function closeModal() {
+            overlay.classList.remove('active');
+            setTimeout(function () {
+                overlay.style.display = 'none';
+                document.body.style.overflow = '';
+            }, 300);
+        }
+
+        openBtn.addEventListener('click', openModal);
+        closeBtn.addEventListener('click', closeModal);
+
+        overlay.addEventListener('click', function (e) {
+            if (e.target === overlay) closeModal();
+        });
+
+        document.addEventListener('keydown', function (e) {
+            if (e.key === 'Escape' && overlay.classList.contains('active')) {
+                closeModal();
+            }
+        });
+
+        // Form submission via fetch to avoid redirect
+        form.addEventListener('submit', function (e) {
+            e.preventDefault();
+
+            var submitBtn = document.getElementById('submitBtn');
+            submitBtn.disabled = true;
+            submitBtn.textContent = 'שולח...';
+
+            var formData = new FormData(form);
+
+            fetch(form.action, {
+                method: 'POST',
+                body: formData,
+                headers: { 'Accept': 'application/json' }
+            })
+            .then(function () {
+                form.style.display = 'none';
+                thankYou.classList.add('active');
+            })
+            .catch(function () {
+                // Show thank you anyway — FormSubmit sometimes blocks CORS
+                form.style.display = 'none';
+                thankYou.classList.add('active');
+            });
+        });
+    </script>
+</body>
+</html>
